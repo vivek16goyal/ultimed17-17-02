@@ -216,16 +216,16 @@ function ShowPartyLdgr() {
     } else if (localStorage.getItem("FDName") == "QTNW") {
         pcode = localStorage.getItem("pcodeQTNW");
     }
-    else {
-        pcode = localStorage.getItem("pcodeLdg");
-    }
+    //else {
+    //    pcode = localStorage.getItem("pcodeLdg");
+    //}
     if (pcode != "" && pcode != null) {
         loadmsg = "Loading Data...";
         $(".show-page-loading-msg").click();
-        // var frmdate = $("#frmdt_ldg").val();
-        //var todate = $("#todt_ldg").val();
-        var todate;
-        var frmdate;
+         var frmdate = $("#frmdt_ldg1").val();
+        var todate = $("#todt_ldg1").val();
+        //var todate;
+        //var frmdate;
         if (frmdate == "" || frmdate == null) {
             frmdate = localStorage.getItem("startdt");
         }
@@ -314,6 +314,69 @@ function ShowPartyLdgr() {
         });
     }
 }
+function validateEmail(emailField) {
+    var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
+    if (reg.test(emailField.value) == false) {
+        alert('Invalid Email Address');
+        return false;
+    }
+
+    return true;
+
+}
+
+function SendLedgerEmail() {
+    var pcode = "A10000";
+    var frmdate = $("#frmdt_ldg1").val();//CHANGE BY VIVEK TEMPIRARY
+    var todate = $("#todt_ldg1").val();
+    //var todate=null;
+    //var frmdate = null;
+    if (frmdate == "" || frmdate == null) {
+        frmdate = localStorage.getItem("startdt");
+    }
+    if (todate == "" || todate == null) {
+        todate = localStorage.getItem("enddt");
+    }
+    var IsopbalInclude;
+    var Issummary;
+
+    if ("1" == $("#flip-chk-opBal").val()) {
+        IsopbalInclude = true;
+    } else {
+        IsopbalInclude = false;
+    }
+    if ("1" == $("#flip-chk-sumary").val()) {
+        Issummary = true;
+    } else {
+        Issummary = false
+    }
+  //  var pcode = localStorage.getItem("Ldg_PCODE");
+    var list_partyLdgr = localStorage.getItem("Ldg_DataList");
+    var ToEmail = $("#txt_ldgToEmail").val();
+    var Subject = $("#txt_ldgSubject").val();
+    var MsgText = $("#txt_ldgBody").val();
+    var Footer = $("#txt_ldgFooter").val();
+    var OPBal = localStorage.getItem("Ldg_OpBal");
+    loadmsg = "Please Wait..";
+    $(".show-page-loading-msg").click();
+    var WebSerUrl = localStorage.getItem("APIURL");
+    WebSerUrl = WebSerUrl + "/Values/SendLedgerEmail?pcode=" + pcode + "&frmdate=" + frmdate + "&todate=" + todate + "&IsOPBalInclude=" + IsopbalInclude + "&IsSummary=" + Issummary + "&ToEmail=" + ToEmail + "&Subject=" + Subject + "&MsgText=" + MsgText + "&Footer=" + Footer + "&OPBal=" + OPBal;
+    $.ajax({
+        url: WebSerUrl,
+        success: function (data) {
+            $(".hide-page-loading-msg").click();
+            window.location.href = "#Party-Ldg";
+            alert("Mail Send Succesfully.")
+        },
+        error: function (xmlHttpRequest, textStatus, errorThrown) {
+            $(".hide-page-loading-msg").click();
+            window.location.href = "#Party-Ldg";
+            alert("Sorry! Please Try After Some Time")
+        }
+    });
+}
+
 //change uup
 function Forward() {
     $(".hide-page-loading-msg").click();
