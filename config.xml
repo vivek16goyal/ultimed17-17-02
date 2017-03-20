@@ -1,7 +1,7 @@
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.GBC.Davawala" versionCode="1" version="1.0.0">
-  <name>Davawala</name>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.GBC.UltiMed" versionCode="1" version="1.0.0">
+  <name>UltiMed</name>
   <description>Place an Order specialized Davawala</description>
-  <author href="http://goyalonline.com" email="yashaswi@goyalonline.com">Yashaswi Narkhedkar</author>
+  <author href="http://goyalonline.com" email="yashaswi@goyalonline.com">Vivek Umredkar</author>
   <content src="index.html"/>
   <preference name="permissions" value="none"/>
   <preference name="orientation" value="portrait"/>
