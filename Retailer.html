@@ -12,7 +12,7 @@
     <link rel=" stylesheet" href="assets/css/TableCSSCode.css">
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/jquery-1.9.js"></script>
-    
+
     <!--SMS-->
     <script src="js/jquery.js"></script>
     <script src="js/jquery.mobile-1.4.5.min.js"></script>
@@ -80,7 +80,6 @@
             /* Important Thing */
             -webkit-appearance: none;
             border: none;
-            
         }
 
             progress::-webkit-progress-bar {
@@ -178,7 +177,7 @@
                 text-align: center;
                 line-height: 28px;
             }
-            /*.full_image .full_left {
+        /*.full_image .full_left {
                 cursor: pointer;
                 top:190px;
                 height: 29px;
@@ -209,7 +208,7 @@
     </style>
 
 </head>
-<body onload="onDeviceReady()" id="mainBd" class="theme-color" style="overflow:scroll">
+<body onload="onDeviceReady()" id="mainBd" class="theme-color" style="overflow: scroll">
 
     <div id="page-con" data-role="page" class="jqm-demos">
         <div data-role="header" data-position="fixed" class="jqm-header">
@@ -268,7 +267,7 @@
             <div class="MainDiv" id="HomePagehree" style="display: none">
                 <div>
                     <a href=".././">
-                        <img src="assets/img/MainPagelogo.png"  alt="jQuery Mobile" class="MainDiv-logo"></a>
+                        <img src="assets/img/MainPagelogo.png" alt="jQuery Mobile" class="MainDiv-logo"></a>
                     <div class="MainDiv-text">
                         <p id="main-p-00002_">
                             Shree Medical & General Stores is leading medicine shop in Central India having wide range and ready stock of Medicines, Injectables, Surgical Equipment, Tools, Swine Flu, Cancer and Specialised Medicines etc.  
@@ -280,7 +279,7 @@
                             A to Z Dava Stores is leading medicine shop in Central India having wide range and ready stock of Medicines, Injectables, Surgical Equipment, Tools, Swine Flu, Cancer and Specialised Medicines etc.  
                             <br />
                             <br />
-                          <!--  <a  onclick="DownLoad()"> DownLoad Imgae</a>
+                            <!--  <a  onclick="DownLoad()"> DownLoad Imgae</a>
                             <br />
                             <a onclick="Dwn()"> Download Image 12 </a>
 
@@ -293,7 +292,7 @@
             <br />
 
             <section class="slider" id="slide-offer">
-                <div class="flexslider" id="HomeSlider-div" style="height:18vh">
+                <div class="flexslider" id="HomeSlider-div" style="height: 18vh">
                     <ul class="slides" id="sliderFrame" style="display: none" onclick="ShowOffer()">
                         <li id="slide-1">
                             <img src="assets/img/slide-1.jpg" />
@@ -306,9 +305,9 @@
             </section>
 
 
-            <div id="menuBottun" class="MainDiv" style="display: none; margin-left: 20px; margin-right: 20px; ">
+            <div id="menuBottun" class="MainDiv" style="display: none; margin-left: 20px; margin-right: 20px;">
 
-                <div class="btn-div" id="menuBtn" >
+                <div class="btn-div" id="menuBtn">
 
                     <center>
                         <div id="tbl1">
@@ -407,7 +406,7 @@
                 <input type="text" placeholder="Enter Name" data-theme="a" id="txtRegName" />
                 <label>Mobile No</label>
                 <input type="number" placeholder="Enter Mobile No" data-theme="a" id="txtMoNO" pattern="[0-9]" />
-               <!-- <div id="Doc_Div">-->
+                <!-- <div id="Doc_Div">-->
                 <!--<label>Doctor Name</label>
                 <input type="text" placeholder="Enter Doctor Name" data-theme="a" id="txtDocName" onblur="SetDocName('1')" />
                     </div>-->
@@ -510,12 +509,12 @@
                         </center>
                 </div>
 
-                <div  id="Item-cart" data-title="Inbox" class="jqm-demos">
-        
-        <!-- /header -->
-        <div role="main" class="ui-content">
-            <div class="btn-div" style="margin-left: 25vw; width: 40vw;" id="Empty-basket">
-                <center>
+                <div id="Item-cart" data-title="Inbox" class="jqm-demos">
+
+                    <!-- /header -->
+                    <div role="main" class="ui-content">
+                        <div class="btn-div" style="margin-left: 25vw; width: 40vw;" id="Empty-basket">
+                            <center>
                     <table>
                         <tr>
                             <td id="td2" onclick="fun_nextItem()" class="theme-color-btn">
@@ -528,155 +527,160 @@
                         
                     </table>
                 </center>
+                        </div>
+                        <center>
+            <div class="full_image">
+                <label id="lbl-cart-pre">Selected Image</label>
+                <img id="cart-pre" src="assets/img/No_image.png" alt="NoImage" onclick="FullSize()" />
             </div>
-            
-            <div id="Item-grid-table">
-                <center>
+                </center>
+                        <div id="Item-grid-table">
+                            <center>
                     <label id="itm-cnt" style="margin-top:0px;"></label>
                 </center>
-                <div data-theme="b" class="my-page" style="margin-top: -32px;">
-                    <div role="main" class="ui-content" style="overflow-x: visible; width: 90%" id="grid_Ord">
-                        <ul data-role="listview" data-inset="true" id="Itm_Grid" class="touch" data-icon="false" data-split-icon="delete"></ul>
-                    </div>
-
-                    <a id="lnk" onclick="ShowHide()" style="margin-top: -30vh; margin-left: 17px;">+Veiw/Hide Order Details..</a>
-
-                    <table id="tbl_orderDetail" style="width: 90%; margin-left: 17px;">
-                        <tr id="tr_DocLbl">
-                            <td colspan="2">
-                                <label>Doctor:</label>
-                            </td>
-                        </tr>
-                        <tr id="tr_DocTxt">
-                            <td colspan="2">
-                                <input type="text" id="dr-name" placeholder="Enter Doctor Name..." data-theme="a" data-type="search" />
-                                <div id="dr-info-body" style="width: 90%" class="display-none">
-                                    <label style="margin-top: -5px; font-size: 13px;display:none" id="dr_infoAdd"></label>
+                            <div data-theme="b" class="my-page" style="margin-top: -32px;">
+                                <div role="main" class="ui-content" style="overflow-x: visible; width: 90%" id="grid_Ord">
+                                    <ul data-role="listview" data-inset="true" id="Itm_Grid" class="touch" data-icon="false" data-split-icon="delete"></ul>
                                 </div>
-                            </td>
-                        </tr>
 
-                        <tr>
-                            <td colspan="2">
-                                <label>User Details:</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" style="background-color: white; border-radius: 10px; padding: 10px; box-shadow: 0px 3px 5px #bbbdbb">
-                                <p id="Cust"></p>
-                                <p id="CustNo"></p>
-                                <p id="CustEmail"></p>
-                                <p id="CustAdd"></p>
-                                <p id="CustState"></p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <div data-role="popup" id="Div8" class="ui-content" data-theme="a" style="max-width: 350px;">
-                                    <p>It is recommanded to select name from List Only.</p>
-                                </div>
-                                <label>Delivery Address:<a id="a8" style="display: none" href="#Div8" data-rel="popup" data-transition="pop" class="my-tooltip-btn ui-btn ui-alt-icon ui-nodisc-icon ui-btn-inline ui-icon-info ui-btn-icon-notext">i</a><span id="a-msg" style="color: red; display: none">Area Required!!!</span></label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" style="background-color: white; border-radius: 10px; padding: 10px; box-shadow: 0px 3px 5px #bbbdbb">
-                                <input type="text" onblur="CheckListValidation('7')" id="del-area" data-type="search" placeholder="Area Name.." />
-                                <textarea id="txtbillingAdd"></textarea>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <label>Bill Details:</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" style="background-color: white; border-radius: 10px; padding: 10px; box-shadow: 0px 3px 5px #bbbdbb">
-                                <table style="width: 100%">
-                                    <tr>
-                                        <td>Subtotal:</td>
-                                        <td style="float: right" id="amt"></td>
-                                    </tr>                                    
-                                    <tr id="tr_Disc">
-                                        <td id="td3">Discount (20%):</td>
-                                        <td style="float: right" id="DiscAmt">0.00</td>
+                                <a id="lnk" onclick="ShowHide()" style="margin-top: -30vh; margin-left: 17px;">+Veiw/Hide Order Details..</a>
+
+                                <table id="tbl_orderDetail" style="width: 90%; margin-left: 17px;">
+                                    <tr id="tr_DocLbl">
+                                        <td colspan="2">
+                                            <label>Doctor:</label>
+                                        </td>
                                     </tr>
-                                    <tr id="tr_Wallete">
-                                        <td >Wallet Amt:</td>
-                                        <td style="float: right" id="walAmt">0.00</td>
+                                    <tr id="tr_DocTxt">
+                                        <td colspan="2">
+                                            <input type="text" id="dr-name" placeholder="Enter Doctor Name..." data-theme="a" data-type="search" />
+                                            <div id="dr-info-body" style="width: 90%" class="display-none">
+                                                <label style="margin-top: -5px; font-size: 13px; display: none" id="dr_infoAdd"></label>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="2">
+                                            <label>User Details:</label>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td>Shipping Charges:</td>
-                                        <td style="float: right" id="charges"></td>
-                                    </tr>                                   
-                                    <tr>
-                                        <td style="font-weight: bold">Total Order Amount: </td>
-                                        <td style="float: right; font-weight: bold" id="Ordtot"></td>
+                                        <td colspan="2" style="background-color: white; border-radius: 10px; padding: 10px; box-shadow: 0px 3px 5px #bbbdbb">
+                                            <p id="Cust"></p>
+                                            <p id="CustNo"></p>
+                                            <p id="CustEmail"></p>
+                                            <p id="CustAdd"></p>
+                                            <p id="CustState"></p>
+                                        </td>
                                     </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <div data-role="popup" id="Div8" class="ui-content" data-theme="a" style="max-width: 350px;">
+                                                <p>It is recommanded to select name from List Only.</p>
+                                            </div>
+                                            <label>Delivery Address:<a id="a8" style="display: none" href="#Div8" data-rel="popup" data-transition="pop" class="my-tooltip-btn ui-btn ui-alt-icon ui-nodisc-icon ui-btn-inline ui-icon-info ui-btn-icon-notext">i</a><span id="a-msg" style="color: red; display: none">Area Required!!!</span></label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="background-color: white; border-radius: 10px; padding: 10px; box-shadow: 0px 3px 5px #bbbdbb">
+                                            <input type="text" onblur="CheckListValidation('7')" id="del-area" data-type="search" placeholder="Area Name.." />
+                                            <textarea id="txtbillingAdd"></textarea>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <label>Bill Details:</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="background-color: white; border-radius: 10px; padding: 10px; box-shadow: 0px 3px 5px #bbbdbb">
+                                            <table style="width: 100%">
+                                                <tr>
+                                                    <td>Subtotal:</td>
+                                                    <td style="float: right" id="amt"></td>
+                                                </tr>
+                                                <tr id="tr_Disc">
+                                                    <td id="td3">Discount (20%):</td>
+                                                    <td style="float: right" id="DiscAmt">0.00</td>
+                                                </tr>
+                                                <tr id="tr_Wallete">
+                                                    <td>Wallet Amt:</td>
+                                                    <td style="float: right" id="walAmt">0.00</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Shipping Charges:</td>
+                                                    <td style="float: right" id="charges"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-weight: bold">Total Order Amount: </td>
+                                                    <td style="float: right; font-weight: bold" id="Ordtot"></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+
+
                                 </table>
-                            </td>
-                        </tr>
 
+                                <table class="ui-content" style="margin-left: 10px; padding: 0; width: 90%;">
+                                    <tr>
+                                        <td>
+                                            <a href="#Item-Info-Search" data-transition="flip">
+                                                <div class="ui-btn ui-input-btn ui-corner-all ui-shadow theme-color-btn" style="background: #1390cf" onclick="fun_nextItem()">
+                                                    <img id="Img12" src="assets/img/add.png" alt="Add Item">
+                                                </div>
+                                            </a>
+                                        </td>
 
-                    </table>
-
-                    <table class="ui-content" style="margin-left: 10px; padding: 0; width: 90%;">
-                        <tr>
-                            <td>
-                                <a href="#Item-Info-Search" data-transition="flip">
-                                    <div class="ui-btn ui-input-btn ui-corner-all ui-shadow theme-color-btn" style="background: #1390cf" onclick="fun_nextItem()">
-                                        <img id="Img12" src="assets/img/add.png" alt="Add Item">
-                                    </div>
-                                </a>
-                            </td>
-
-                            <td id="td-order-nxt" onclick="SaveOrder()">
-                                <!--<div class="ui-btn ui-input-btn ui-corner-all ui-shadow theme-color-btn" style="background: #1390cf" onclick="fun_nextItem()">
+                                        <td id="td-order-nxt" onclick="SaveOrder()">
+                                            <!--<div class="ui-btn ui-input-btn ui-corner-all ui-shadow theme-color-btn" style="background: #1390cf" onclick="fun_nextItem()">
                                        Order Now
                                     </div>-->
-                                <center>
+                                            <center>
                                 <img id="Img13" src="assets/img/OrderNow.jpg" alt="Save" style="width:150px;height:65px">
                                     </center>
-                            </td>
-                            <td>
-                                <a>
-                                    <div class="ui-btn ui-input-btn ui-corner-all ui-shadow theme-color-btn" style="background: #1390cf" onclick="fun_cancelOrder()">
-                                        <img id="Cancel-tmgrid" src="assets/img/cancel1.png" alt="Canecl">
-                                    </div>
-                                </a>
-                            </td>
-                        </tr>
+                                        </td>
+                                        <td>
+                                            <a>
+                                                <div class="ui-btn ui-input-btn ui-corner-all ui-shadow theme-color-btn" style="background: #1390cf" onclick="fun_cancelOrder()">
+                                                    <img id="Cancel-tmgrid" src="assets/img/cancel1.png" alt="Canecl">
+                                                </div>
+                                            </a>
+                                        </td>
+                                    </tr>
 
-                    </table>
+                                </table>
 
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /content -->
+                    <div id="confirm" class="ui-content" data-role="popup" data-theme="a">
+                        <p id="question">Are you sure you want to delete this item?</p>
+                        <div class="ui-grid-a">
+                            <div class="ui-block-a">
+                                <a id="yes" class="ui-btn ui-corner-all ui-mini ui-btn-a" data-rel="back">Yes</a>
+                            </div>
+                            <div class="ui-block-b">
+                                <a id="cancel" class="ui-btn ui-corner-all ui-mini ui-btn-a" data-rel="back">Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /popup -->
+
+
+                    <div data-role="footer" data-position="fixed" class="my-footer">
+                        <a onclick="BackButton()" data-icon="carat-l" data-iconpos="notext" style="float: left;" class="footer-img">Back</a>
+                        <a href="#page-con" data-transition="flip" data-icon="home" data-iconpos="notext" class="footer-img">home</a>
+                        <a data-icon="action" data-iconpos="notext" class="footer-img" onclick="fun_cancel()">exit</a>
+                        <a data-icon="carat-r" data-iconpos="notext" style="margin: 10px; float: right" class="footer-img" onclick="SaveOrder()">next</a>
+                    </div>
                 </div>
             </div>
+        </div>
 
-        </div>
-        <!-- /content -->
-        <div id="confirm" class="ui-content" data-role="popup" data-theme="a">
-            <p id="question">Are you sure you want to delete this item?</p>
-            <div class="ui-grid-a">
-                <div class="ui-block-a">
-                    <a id="yes" class="ui-btn ui-corner-all ui-mini ui-btn-a" data-rel="back">Yes</a>
-                </div>
-                <div class="ui-block-b">
-                    <a id="cancel" class="ui-btn ui-corner-all ui-mini ui-btn-a" data-rel="back">Cancel</a>
-                </div>
-            </div>
-        </div>
-        <!-- /popup -->
-
-
-        <div data-role="footer" data-position="fixed" class="my-footer">
-            <a onclick="BackButton()" data-icon="carat-l" data-iconpos="notext" style="float: left;" class="footer-img">Back</a>
-            <a href="#page-con" data-transition="flip" data-icon="home" data-iconpos="notext" class="footer-img">home</a>
-            <a data-icon="action" data-iconpos="notext" class="footer-img" onclick="fun_cancel()">exit</a>
-            <a data-icon="carat-r" data-iconpos="notext" style="margin: 10px; float: right" class="footer-img" onclick="SaveOrder()">next</a>
-        </div>
-    </div>
-            </div>
-        </div>
-        
     </div>
 
     <div data-role="page" id="ImageSelect" class="jqm-demos">
@@ -826,7 +830,7 @@
         </div>
     </div>
 
-    
+
 
     <div data-role="page" id="Vrdetail" class="jqm-demos">
 
@@ -964,8 +968,8 @@
                     <label>Mobile No</label>
                     <input type="number" data-theme="a" id="pro_txtmo" />
                     <div id="pro_DocDiv">
-                    <label>Doctor Name</label>
-                    <input type="text" placeholder="Enter Doctor Name" data-theme="a" id="pro_txtDocname" onblur="SetDocName('2')" />
+                        <label>Doctor Name</label>
+                        <input type="text" placeholder="Enter Doctor Name" data-theme="a" id="pro_txtDocname" onblur="SetDocName('2')" />
                     </div>
                     <label>Email-Id</label>
                     <input type="email" placeholder="Email Id" data-theme="a" id="pro_txtemail" onblur="CheckEmail(this)" />
@@ -1126,7 +1130,7 @@
         </div>
     </div>
 
-     <div data-role="page" id="div-party-ldgr" data-theme="a" style="overflow: no-display;" class="jqm-demos">
+    <div data-role="page" id="div-party-ldgr" data-theme="a" style="overflow: no-display;" class="jqm-demos">
 
         <div data-role="header" data-position="fixed" class="jqm-header">
             <a data-rel="back" data-icon="carat-l" data-iconpos="notext" style="margin-left: 10px; background-color: white;">Back</a>
@@ -1134,7 +1138,7 @@
             <h2 id="h6" style="color: white;">Party Ledger</h2>
             <a onclick="SetEmailDefaultValue()" data-icon="mail" data-iconpos="notext" style="margin-right: 10px; background-color: white;" href="#Mail-Body" data-rel="popup" data-transition="slidedown">Back</a>
         </div>
-         <center>
+        <center>
             <div style="width:92%">
                 <div id="Mail-Body" style="padding:10px" data-role="popup" data-theme="a">
                     <center>
