@@ -34,7 +34,7 @@ var APPType = "$";
 
 
 //  3)///////*******A to Z Dava [Demo Version Given To Drug Deal] **********************//////////
-var Heading = "Drug Deal";
+var Heading = "ULTIMED";
 var PCODE = "DEM010";
 var folderPathImg = "file:///storage/sdcard0/" + PCODE + "/";
 var DownloadPath = "file:///storage/sdcard0/";
@@ -172,7 +172,212 @@ function onDeviceReady() {
     }
 
 }
+//change link item cart
+function cliencode_check() {
+    var clientCode = localStorage.getItem("ClientCode");
+    if (clientCode == null || clientCode == "") {
+        window.location = "index01.html";
+    }
+    else {
+        var sp = clientCode.substring(0, 1);
+        if (sp == "2") {
+            window.location = "Retailer.html";
+        }
+        else {
+            window.location = "SRepresentation.html"
+        }
 
+    }
+}
+//party ledger//vivek umredkar
+function Party_ledger() {
+    window.location.href = "#div-party-ldgr";
+    ShowPartyLdgr();
+}
+function ShowPartyLdgr() {
+    localStorage.setItem("Ldg_DataList", "");
+    localStorage.setItem("Ldg_PCODE", "");
+    localStorage.setItem("Ldg_OpBal", "");
+
+    WebSerUrl = localStorage.getItem("APIURL");
+    var pcode = "A10000";
+    if (localStorage.getItem("FDName") == "ORDS") {
+        pcode = localStorage.getItem("pcode");
+    } else if (localStorage.getItem("FDName") == "WSAL") {
+        pcode = localStorage.getItem("pcodeWsale");
+    } else if (localStorage.getItem("FDName") == "SALE") {
+        pcode = localStorage.getItem("pcodeSale");
+    } else if (localStorage.getItem("FDName") == "MNRC") {
+        pcode = localStorage.getItem("ReceiptPcode");
+    } else if (localStorage.getItem("FDName") == "MNPY") {
+        pcode = localStorage.getItem("ReceiptPcode");
+    } else if (localStorage.getItem("FDName") == "QTTN") {
+        pcode = localStorage.getItem("pcodeQTTN");
+    } else if (localStorage.getItem("FDName") == "QTNW") {
+        pcode = localStorage.getItem("pcodeQTNW");
+    }
+    //else {
+    //    pcode = localStorage.getItem("pcodeLdg");
+    //}
+    if (pcode != "" && pcode != null) {
+        loadmsg = "Loading Data...";
+        $(".show-page-loading-msg").click();
+         var frmdate = $("#frmdt_ldg1").val();
+        var todate = $("#todt_ldg1").val();
+        //var todate;
+        //var frmdate;
+        if (frmdate == "" || frmdate == null) {
+            frmdate = localStorage.getItem("startdt");
+        }
+        if (todate == "" || todate == null) {
+            todate = localStorage.getItem("enddt");
+        }
+        var IsopbalInclude;
+        var Issummary;
+
+        if ("1" == $("#flip-chk-opBal").val()) {
+            IsopbalInclude = true;
+        } else {
+            IsopbalInclude = false;
+        }
+        if ("1" == $("#flip-chk-sumary").val()) {
+            Issummary = true;
+        } else {
+            Issummary = false
+        }
+        $.ajax({
+            url: WebSerUrl + "/Order/GetPartyLedger",
+            type: "get",
+            data: { pcode: pcode, frmdate: frmdate, todate: todate, IsOPBalInclude: IsopbalInclude, IsSummary: Issummary },
+            dataType: 'json',
+            processData: true,
+            success: function (data) {
+                $(".hide-page-loading-msg").click();
+                $("#ldgRpt-body").html("");
+                $("#ldgRpt-body").append(" <table id='tbl_ldgrpt' class='CSSTableGenerator' style='border-collapse:collapse;width:600px;'><tr><td style='width:50px;'>Dt</td><td >Description</td><td >DrAmt</td><td >CrAmt</td><td >Balance</td></tr>");
+                for (var i = 0; i < data.length; i++) {
+                    localStorage.setItem("Ldg_DataList", data);
+                    localStorage.setItem("Ldg_PCODE", pcode);
+                    if (data[0].Error == "1") {
+                        ShowErrorFromServer(data[0].Description);
+                    }
+                    else {
+                        if (IsopbalInclude) {
+                            $("#lblOPBal").show();
+                            var a;
+                            if (data[data.length - 1].OPBalance.toFixed(2) > 0) {
+                                a = data[data.length - 1].OPBalance.toFixed(2) + "Dr";
+                            }
+                            else {
+                                a = data[data.length - 1].OPBalance.toFixed(2) + "Cr";
+                            }
+                            localStorage.setItem("Ldg_OpBal", a);
+                            $("#lblOPBal").text("OpBal: " + a);
+                        } else {
+                            $("#lblOPBal").hide();
+                        }
+                        var balancestr;
+                        if (data[i].Balance.toFixed(2) > 0) {
+                            balancestr = data[i].Balance.toFixed(2) + "Dr";
+                        } else {
+                            balancestr = data[i].Balance.toFixed(2) + "Cr";
+                        }
+                        if (Issummary) {
+                            $("#ldgRpt-body").hide();
+                            $("#ldgRpt-body-summary").show();
+                            $("#lbl-s-dr").text("DrAmt : " + data[data.length - 1].dramt.toFixed(2));
+                            $("#lbl-s-cr").text("CrAmt : " + data[data.length - 1].cramt.toFixed(2));
+                            $("#lbl-s-bal").text("Balance : " + balancestr);
+                        } else {
+                            $("#ldgRpt-body-summary").hide();
+                            $("#ldgRpt-body").show();
+
+                            if (i == data.length - 1) {
+                                $("#tbl_ldgrpt tr:last").after("<tr><td colspan='2' style='color:purple;font-weight:bold;'>" + data[i].Description + "</td><td style='color:purple;font-weight:bold; text-align:right;width:70px;'>" + data[i].dramt.toFixed(2) + "</td><td  style='color:purple;font-weight: bold; text-align:right;width:70px;'>" + data[i].cramt.toFixed(2) + "</td><td style='color:purple;font-weight:bold; text-align:right;width:70px;'>" + balancestr.replace("-", "") + "</td></tr></tbody>");
+
+                            } else {
+                                $("#tbl_ldgrpt tr:last").after("<tr><td style='width:50px;'>" + data[i].Dt + "</td> <td  style='text-align:justify;width:340px;'>" + data[i].Description + "</td><td style=' text-align:right;'>" + data[i].dramt.toFixed(2) + "</td><td style=' text-align:right;'>" + data[i].cramt.toFixed(2) + "</td><td style=' text-align:right;'>" + balancestr.replace("-", "") + "</td></tr>");
+
+                            }
+                        }
+
+                    }
+                }
+                setInterval(function setsize() {
+
+                }, 2000);
+            },
+            error: function (event) {
+                $(".hide-page-loading-msg").click();
+                ServiceStopMsg();
+            }
+        });
+    }
+}
+function validateEmail(emailField) {
+    var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
+    if (reg.test(emailField.value) == false) {
+        alert('Invalid Email Address');
+        return false;
+    }
+
+    return true;
+
+}
+
+function SendLedgerEmail() {
+    var pcode = "A10000";
+    var frmdate = $("#frmdt_ldg1").val();//CHANGE BY VIVEK TEMPIRARY
+    var todate = $("#todt_ldg1").val();
+    //var todate=null;
+    //var frmdate = null;
+    if (frmdate == "" || frmdate == null) {
+        frmdate = localStorage.getItem("startdt");
+    }
+    if (todate == "" || todate == null) {
+        todate = localStorage.getItem("enddt");
+    }
+    var IsopbalInclude;
+    var Issummary;
+
+    if ("1" == $("#flip-chk-opBal").val()) {
+        IsopbalInclude = true;
+    } else {
+        IsopbalInclude = false;
+    }
+    if ("1" == $("#flip-chk-sumary").val()) {
+        Issummary = true;
+    } else {
+        Issummary = false
+    }
+  //  var pcode = localStorage.getItem("Ldg_PCODE");
+    var list_partyLdgr = localStorage.getItem("Ldg_DataList");
+    var ToEmail = $("#txt_ldgToEmail").val();
+    var Subject = $("#txt_ldgSubject").val();
+    var MsgText = $("#txt_ldgBody").val();
+    var Footer = $("#txt_ldgFooter").val();
+    var OPBal = localStorage.getItem("Ldg_OpBal");
+    loadmsg = "Please Wait..";
+    $(".show-page-loading-msg").click();
+    var WebSerUrl = localStorage.getItem("APIURL");
+    WebSerUrl = WebSerUrl + "/Values/SendLedgerEmail?pcode=" + pcode + "&frmdate=" + frmdate + "&todate=" + todate + "&IsOPBalInclude=" + IsopbalInclude + "&IsSummary=" + Issummary + "&ToEmail=" + ToEmail + "&Subject=" + Subject + "&MsgText=" + MsgText + "&Footer=" + Footer + "&OPBal=" + OPBal;
+    $.ajax({
+        url: WebSerUrl,
+        success: function (data) {
+            $(".hide-page-loading-msg").click();
+            window.location.href = "#Party-Ldg";
+            alert("Mail Send Succesfully.")
+        },
+        error: function (xmlHttpRequest, textStatus, errorThrown) {
+            $(".hide-page-loading-msg").click();
+            window.location.href = "#Party-Ldg";
+            alert("Sorry! Please Try After Some Time")
+        }
+    });
+}
+
+//change uup
 function Forward() {
     $(".hide-page-loading-msg").click();
     var link = window.location.href.toString();
